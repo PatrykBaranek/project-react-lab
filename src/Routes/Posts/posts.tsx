@@ -1,40 +1,18 @@
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC } from 'react';
+import { IPost, MethodType } from '../../Common/types';
+import useFetch from '../../Hooks/useFetch';
 import './Posts.css';
 
-export interface IPost {
-	id: number;
-	title: string;
-	body: string;
-	userId: number;
-}
-
 export const Posts: FC = (props) => {
-	//jsonplaceholder.typicode.com/posts
-	const [error, setError] = useState('');
-	const [data, setData] = useState<IPost[]>([]);
-
-	const fetchData = useCallback(async () => {
-		try {
-			const response = await fetch(
-				'https://jsonplaceholder.typicode.com/posts'
-			);
-			const dataAPI = await response.json();
-
-			setData(dataAPI);
-		} catch (err: unknown) {
-			if (err instanceof Error) {
-				setError(err.message);
-			}
-		}
-	}, []);
-
-	useEffect(() => {
-		fetchData();
-	}, [fetchData]);
+	const { data, error, isLoading } = useFetch<IPost>(
+		'https://jsonplaceholder.typicode.com/posts',
+		MethodType.GET
+	);
 
 	return (
 		<>
-			{error && <div className="error">Error</div>}
+			{isLoading && <div>Loading...</div>}
+			{error && <div className="error">{error}</div>}
 			<div className="posts">
 				{data.map((post) => (
 					<div className="card" key={post.id}>
