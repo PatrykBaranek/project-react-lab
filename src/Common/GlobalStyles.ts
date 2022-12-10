@@ -15,4 +15,10 @@ export const GlobalStyles = createGlobalStyle`
         background-color: #333;
         color:#ddd;
     }
+
+    #root{
+        margin: 0 auto;
+        max-width: 1440px;
+    }
+
 `;
