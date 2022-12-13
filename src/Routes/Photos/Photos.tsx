@@ -1,22 +1,30 @@
 import { FC } from 'react';
-import { IPhoto, MethodType } from '../../Common/types';
+import Loading from '../../Common/Loading/Loading';
+import { IPhoto } from '../../Common/types';
 import useFetch from '../../Hooks/useFetch';
 
-export const Photos: FC = (props) => {
-	const { data, error, isLoading } = useFetch<IPhoto>(
-		'https://jsonplaceholder.typicode.com/photos',
-		MethodType.GET
+const Photos: FC = (props) => {
+	const { data, error, isLoading } = useFetch<IPhoto[]>(
+		'https://jsonplaceholder.typicode.com/photos'
 	);
 
-	console.log(data);
+	const photos = data?.filter((x) => x.thumbnailUrl !== null);
 
 	return (
 		<>
-			{isLoading && <div>Loading...</div>}
+			{isLoading && <Loading />}
 			{error && <div>{error}</div>}
 			<div className="photos">
-				<img src="" alt="" />
+				{photos &&
+					photos.map((photo) => (
+						<div key={photo.id}>
+							<p>{photo.title}</p>
+							<img src={photo.thumbnailUrl} alt="placeholder" />
+						</div>
+					))}
 			</div>
 		</>
 	);
 };
+
+export default Photos;

@@ -5,6 +5,14 @@ export interface IPost {
 	userId: number;
 }
 
+export interface IComment {
+	postId: number;
+	id: number;
+	name: string;
+	email: string;
+	body: string;
+}
+
 export interface IPhoto {
 	albumId: number;
 	id: number;
