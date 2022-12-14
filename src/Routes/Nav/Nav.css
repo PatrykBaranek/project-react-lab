@@ -19,6 +19,6 @@
 	transform: scale(1.1);
 }
 
-.navigation a:focus {
+.navigation .activeLink {
 	border-bottom: 2px solid #ddd;
 }

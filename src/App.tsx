@@ -6,11 +6,13 @@ import Nav from './Routes/Nav/Nav';
 import Photos from './Routes/Photos/Photos';
 import PostDetails from './Routes/PostDetails/PostDetails';
 import Posts from './Routes/Posts/posts';
+import NotFound from './Common/NotFound/NotFound';
+import Users from './Routes/Users/Users';
 
 // styles
 import { GlobalStyles } from './Common/GlobalStyles';
 import './App.css';
-import NotFound from './Common/NotFound/NotFound';
+import ErrorPage from './Common/ErrorPage/ErrorPage';
 
 const App: FC = () => {
 	return (
@@ -20,10 +22,12 @@ const App: FC = () => {
 			<img src={process.env.PUBLIC_URL} alt="" />
 			<Nav />
 			<Routes>
-				<Route index element={<Home />} />
+				<Route index path="/" element={<Home />} />
 				<Route path="posts" element={<Posts />} />
-				<Route path="photos" element={<Photos />} />
 				<Route path="posts/:id" element={<PostDetails />} />
+				<Route path="photos" element={<Photos />} />
+				<Route path="users" element={<Users />} />
+				<Route path="error" element={<ErrorPage />} />
 				<Route path="*" element={<NotFound />} />
 			</Routes>
 		</>
