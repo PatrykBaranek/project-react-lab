@@ -21,6 +21,40 @@ export interface IPhoto {
 	url: string;
 }
 
+export interface IAlbum {
+	userId: number;
+	id: number;
+	title: string;
+}
+
+export interface IAdress {
+	street: string;
+	suite: string;
+	city: string;
+	zipcode: string;
+	geo: {
+		lat: string;
+		lng: string;
+	};
+}
+
+export interface ICompany {
+	name: string;
+	catchPhrase: string;
+	bs: string;
+}
+
+export interface IUser {
+	id: number;
+	name: string;
+	username: string;
+	email: string;
+	adress: IAdress;
+	phone: string;
+	website: string;
+	company: ICompany;
+}
+
 export enum MethodType {
 	GET = 'GET',
 	POST = 'POST',

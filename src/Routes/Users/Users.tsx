@@ -22,8 +22,6 @@ const User: FC = () => {
 		}
 	}, [searchPhrase, users]);
 
-	console.log(users.current);
-
 	return (
 		<div>
 			{isLoading && <Loading />}

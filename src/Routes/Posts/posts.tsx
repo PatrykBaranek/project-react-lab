@@ -31,8 +31,8 @@ const Posts: FC = (props) => {
 							</div>
 							<div className="card-body">
 								<p>
-									{post.body.length > 20
-										? post.body.slice(20, post.body.length - 1) + '...'
+									{post.body.length > 50
+										? post.body.slice(50, post.body.length - 1) + '...'
 										: post.body}
 								</p>
 							</div>

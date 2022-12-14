@@ -3,9 +3,9 @@ import { Routes, Route } from 'react-router-dom';
 
 import Home from './Routes/Home/home';
 import Nav from './Routes/Nav/Nav';
-import Photos from './Routes/Photos/Photos';
 import PostDetails from './Routes/PostDetails/PostDetails';
 import Posts from './Routes/Posts/posts';
+import AlbumPhotos from './Routes/Photos/AlbumsPhotos';
 import NotFound from './Common/NotFound/NotFound';
 import Users from './Routes/Users/Users';
 
@@ -25,7 +25,7 @@ const App: FC = () => {
 				<Route index path="/" element={<Home />} />
 				<Route path="posts" element={<Posts />} />
 				<Route path="posts/:id" element={<PostDetails />} />
-				<Route path="photos" element={<Photos />} />
+				<Route path="photos" element={<AlbumPhotos />} />
 				<Route path="users" element={<Users />} />
 				<Route path="error" element={<ErrorPage />} />
 				<Route path="*" element={<NotFound />} />
