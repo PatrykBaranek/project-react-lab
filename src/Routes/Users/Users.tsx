@@ -3,6 +3,8 @@ import Loading from '../../Common/Loading/Loading';
 import { IUser } from '../../Common/types';
 import useFetch from '../../Hooks/useFetch';
 
+import './Users.css';
+
 const User: FC = () => {
 	const { data, isLoading } = useFetch<IUser[]>(
 		'https://jsonplaceholder.typicode.com/users'
@@ -23,7 +25,7 @@ const User: FC = () => {
 	}, [searchPhrase, users]);
 
 	return (
-		<div>
+		<div className="user-container">
 			{isLoading && <Loading />}
 
 			<div className="search-user">
@@ -44,10 +46,13 @@ const User: FC = () => {
 						<p>{user.id}</p>
 						<p>{user.name}</p>
 						<p>{user.username}</p>
+						<p>{user.email}</p>
+						<p>{user.phone}</p>
+						<p>{user.company.name}</p>
 					</div>
 				))
 			) : (
-				<div>
+				<div className="users-not-found">
 					<p>Not found related users</p>
 				</div>
 			)}
