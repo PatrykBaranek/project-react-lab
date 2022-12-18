@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import Loading from '../../Common/Loading/Loading';
 import { IAlbum, IPhoto } from '../../Common/types';
 import useFetch from '../../Hooks/useFetch';
@@ -10,10 +10,36 @@ const AlbumPhotos: FC = () => {
 		'https://jsonplaceholder.typicode.com/photos/'
 	);
 
-	const { data, error, isLoading } = useFetch<IPhoto[] | IAlbum[]>(url);
+	const { data, error, isLoading } = useFetch<
+		IPhoto[] | IAlbum[] | IPhoto | IAlbum
+	>(url);
 
-	const [searchPhotoOrAlbumId, setSearchPhotoOrAlbumId] = useState<number>();
+	const [searchPhotoOrAlbumId, setSearchPhotoOrAlbumId] = useState<
+		number | undefined
+	>(undefined);
 	const [selectedOption, setSelectedOption] = useState<string>('albumId');
+
+	useEffect(() => {
+		const changeFetchUrl = () => {
+			if (selectedOption === 'albumId') {
+				if (searchPhotoOrAlbumId === undefined)
+					return setUrl('https://jsonplaceholder.typicode.com/albums/');
+				setUrl(
+					'https://jsonplaceholder.typicode.com/albums?id=' +
+						searchPhotoOrAlbumId
+				);
+			} else if (selectedOption === 'photoId') {
+				if (searchPhotoOrAlbumId === undefined)
+					return setUrl('https://jsonplaceholder.typicode.com/photos');
+				setUrl(
+					'https://jsonplaceholder.typicode.com/photos?id=' +
+						searchPhotoOrAlbumId
+				);
+			}
+		};
+
+		changeFetchUrl();
+	}, [searchPhotoOrAlbumId, selectedOption]);
 
 	const handleChangeOption = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		if (e.target instanceof HTMLSelectElement) {
@@ -21,26 +47,12 @@ const AlbumPhotos: FC = () => {
 		}
 	};
 
-	useEffect(() => {
-		const changeFetchUrl = () => {
-			if (searchPhotoOrAlbumId !== undefined) {
-				if (selectedOption === 'albumId') {
-					setUrl(
-						'https://jsonplaceholder.typicode.com/albums/' +
-							searchPhotoOrAlbumId +
-							`/photos`
-					);
-				} else if (selectedOption === 'photoId') {
-					setUrl(
-						'https://jsonplaceholder.typicode.com/photos/' +
-							searchPhotoOrAlbumId
-					);
-				}
-			}
-		};
-
-		changeFetchUrl();
-	}, [searchPhotoOrAlbumId, selectedOption]);
+	const handleClear = (e: React.FocusEvent<HTMLInputElement>) => {
+		if (e.target instanceof HTMLInputElement) {
+			e.target.value = '';
+			setSearchPhotoOrAlbumId(undefined);
+		}
+	};
 
 	return (
 		<>
@@ -48,11 +60,13 @@ const AlbumPhotos: FC = () => {
 			{error && <div>{error}</div>}
 			<div className="search-photos">
 				<input
-					type="text"
+					type="number"
 					min={1}
+					max={data instanceof Array ? data.length : 1000}
 					placeholder="enter id"
 					value={searchPhotoOrAlbumId}
 					onChange={(e) => setSearchPhotoOrAlbumId(Number(e.target.value))}
+					onBlur={handleClear}
 				/>
 				<select
 					name="searchOption"
@@ -65,7 +79,7 @@ const AlbumPhotos: FC = () => {
 			{selectedOption === 'photoId' ? (
 				<Photos photos={data as IPhoto[]} />
 			) : (
-				<Albums albums={data as IAlbum[]} />
+				<Albums albums={data as IAlbum[] | IAlbum} />
 			)}
 		</>
 	);
