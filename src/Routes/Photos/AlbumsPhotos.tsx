@@ -1,9 +1,11 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
-import Loading from '../../Common/Loading/Loading';
-import { IAlbum, IPhoto } from '../../Common/types';
+import React, { FC, useEffect, useState } from 'react';
 import useFetch from '../../Hooks/useFetch';
+import { IAlbum, IPhoto } from '../../Common/types';
+
+import Loading from '../../Common/Loading/Loading';
 import Albums from './Albums';
 import Photos from './Photos';
+import ErrorPage from '../../Common/ErrorPage/ErrorPage';
 
 const AlbumPhotos: FC = () => {
 	const [url, setUrl] = useState<string>(
@@ -57,12 +59,11 @@ const AlbumPhotos: FC = () => {
 	return (
 		<>
 			{isLoading && <Loading />}
-			{error && <div>{error}</div>}
+			{error && <ErrorPage errorMessage={error} />}
 			<div className="search-photos">
 				<input
 					type="number"
 					min={1}
-					max={data instanceof Array ? data.length : 1000}
 					placeholder="enter id"
 					value={searchPhotoOrAlbumId}
 					onChange={(e) => setSearchPhotoOrAlbumId(Number(e.target.value))}
@@ -77,7 +78,7 @@ const AlbumPhotos: FC = () => {
 				</select>
 			</div>
 			{selectedOption === 'photoId' ? (
-				<Photos photos={data as IPhoto[]} />
+				<Photos photos={data as IPhoto[] | IPhoto} />
 			) : (
 				<Albums albums={data as IAlbum[] | IAlbum} />
 			)}
