@@ -5,7 +5,11 @@ export interface IErrorPageProps {
 }
 
 const ErrorPage: FC<IErrorPageProps> = ({ errorMessage }) => {
-	return <p>{errorMessage}</p>;
+	return (
+		<div className="error-container">
+			<p className="error-message">{errorMessage}</p>
+		</div>
+	);
 };
 
 export default ErrorPage;
