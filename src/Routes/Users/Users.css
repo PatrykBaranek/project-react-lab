@@ -1,18 +1,62 @@
 .user-container {
+	margin: 40px;
 	display: grid;
-	min-height: 100vh;
-	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-	grid-template-rows: 100px, 1fr;
-	column-gap: 20px;
-	row-gap: 20px;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(auto-fill, 200px);
+	justify-items: center;
+	align-items: center;
+	gap: 60px;
 }
 
 .user-container .search-user {
 	margin: 0 auto;
-	margin-bottom: 50px;
-	grid-column: 1 / -1;
+	grid-column: span 3;
+	align-self: center;
+}
+
+.user-container .search-user input {
+	border-radius: 2.5em;
+	padding: 1.2em;
 }
 
 .user-container .user-card {
+	box-sizing: content-box;
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	width: 300px;
+	height: 350px;
+	padding: 3em;
+	border: 1px solid #ddd;
+	border-radius: 10px;
+}
+
+.user-container .user-card .user-name,
+.user-container .user-card .user-username,
+.user-container .user-card .user-email,
+.user-container .user-card .user-phone,
+.user-container .user-card .user-company {
+	margin-left: 5px;
+}
+
+.user-container .user-card .user-name {
+	font-size: 3rem;
 	text-align: center;
+}
+
+.user-container .user-card .user-username {
+	font-size: 2.1rem;
+}
+
+.user-container .user-card .user-email {
+	font-size: 1.8rem;
+}
+
+.user-container .user-card .user-phone {
+	font-size: 2rem;
+}
+
+.user-container .user-card .user-company {
+	font-size: 2rem;
+	background: linear-gradient(from #2c3e50, to #000000);
 }
