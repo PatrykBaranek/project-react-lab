@@ -2,21 +2,17 @@
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
-	height: 4rem;
+	height: 5vh;
 }
 
 .navigation a {
 	display: inline-block;
 	margin-left: 4px;
 	padding: 1.2rem;
-	color: inherit;
 	font-size: 2rem;
 	text-decoration: none;
+	color: inherit;
 	translate: 1s;
-}
-
-.navigation a:hover {
-	transform: scale(1.1);
 }
 
 .navigation .activeLink {
