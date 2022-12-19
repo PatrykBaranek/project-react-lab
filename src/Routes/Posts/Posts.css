@@ -10,12 +10,17 @@
 }
 
 .posts .card {
-	height: 300px;
-	width: 300px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	justify-items: flex-start;
+	height: 350px;
+	width: 350px;
 	padding: 2rem;
 	border: 2px solid white;
 	cursor: pointer;
 	transition: transform 0.3s;
+	text-align: center;
 }
 
 .posts .card:hover {
@@ -23,13 +28,18 @@
 }
 
 .posts .card-title {
-	text-align: center;
 	font-weight: bold;
 	font-size: 1.6rem;
 	font-style: italic;
-	margin-bottom: 10px;
 }
 
 .posts .card-body {
 	font-size: 1.7rem;
+	margin: 20px auto;
+}
+
+.posts .card-createdBy {
+	font-size: 1.2rem;
+	margin-bottom: 10px;
+	text-align: left;
 }
