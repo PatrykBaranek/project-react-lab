@@ -3,6 +3,9 @@
 	justify-content: flex-end;
 	align-items: center;
 	height: 5vh;
+	background-color: #222;
+	box-sizing: content-box;
+	padding: 2em;
 }
 
 .navigation a {
@@ -12,7 +15,6 @@
 	font-size: 2rem;
 	text-decoration: none;
 	color: inherit;
-	translate: 1s;
 }
 
 .navigation .activeLink {
