@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
-    *{
+    *,*::after, *::before{
         box-sizing:border-box;
         margin: 0;
         padding: 0;
@@ -13,6 +13,7 @@ export const GlobalStyles = createGlobalStyle`
 
     body{
         background-color: #333;
+        font-family:sans-serif;
         color:#ddd;
     }
 
