@@ -8,18 +8,18 @@ import Posts from './Routes/Posts/posts';
 import AlbumPhotos from './Routes/Photos/AlbumsPhotos';
 import NotFound from './Common/NotFound/NotFound';
 import Users from './Routes/Users/Users';
+import ErrorPage from './Common/ErrorPage/ErrorPage';
 
 // styles
 import { GlobalStyles } from './Common/GlobalStyles';
 import './App.css';
-import ErrorPage from './Common/ErrorPage/ErrorPage';
+import { LoginForm } from './Common/LoginForm/LoginForm';
 
 const App: FC = () => {
 	return (
 		<>
 			<GlobalStyles />
 
-			<img src={process.env.PUBLIC_URL} alt="" />
 			<Nav />
 			<Routes>
 				<Route index path="/" element={<Home />} />
@@ -27,6 +27,7 @@ const App: FC = () => {
 				<Route path="posts/:id" element={<PostDetails />} />
 				<Route path="photos" element={<AlbumPhotos />} />
 				<Route path="users" element={<Users />} />
+				<Route path="login" element={<LoginForm />} />
 				<Route path="error" element={<ErrorPage />} />
 				<Route path="*" element={<NotFound />} />
 			</Routes>
