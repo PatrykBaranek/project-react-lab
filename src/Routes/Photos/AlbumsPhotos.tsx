@@ -1,13 +1,21 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useContext, useEffect, useState } from 'react';
 import useFetch from '../../Hooks/useFetch';
 import { IAlbum, IPhoto } from '../../Common/types';
 
 import Loading from '../../Common/Loading/Loading';
 import Albums from './Albums';
 import Photos from './Photos';
-import ErrorPage from '../../Common/ErrorPage/ErrorPage';
+import ErrorPage from '../ErrorPage/ErrorPage';
+import { AuthContext } from '../../context/Account/AccountContext';
+import { useNavigate } from 'react-router-dom';
 
 const AlbumPhotos: FC = () => {
+	const { state: user } = useContext(AuthContext);
+	const navigate = useNavigate();
+	if (!user.isAuthenticated) {
+		navigate('/login');
+	}
+
 	const [url, setUrl] = useState<string>(
 		'https://jsonplaceholder.typicode.com/photos/'
 	);

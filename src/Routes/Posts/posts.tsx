@@ -1,9 +1,10 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Loading from '../../Common/Loading/Loading';
 import { IPost, IUser } from '../../Common/types';
 import useFetch from '../../Hooks/useFetch';
 import './Posts.css';
+import { AuthContext } from '../../context/Account/AccountContext';
 
 export interface IUsernames {
 	userId: number;
@@ -12,21 +13,22 @@ export interface IUsernames {
 }
 
 const Posts: FC = () => {
-	const navigate = useNavigate();
-
+	const { state: user } = useContext(AuthContext);
 	const {
 		data: posts,
 		error,
 		isLoading,
 	} = useFetch<IPost[]>('https://jsonplaceholder.typicode.com/posts');
-
 	const { data: users } = useFetch<IUser[]>(
 		'https://jsonplaceholder.typicode.com/users'
 	);
-
 	const [usernames, setUserNames] = useState<IUsernames[] | undefined>([]);
+	const navigate = useNavigate();
 
 	useEffect(() => {
+		if (!user.isAuthenticated) {
+			navigate('/login');
+		}
 		if (users !== undefined && posts !== undefined) {
 			const usernames = users?.map((user) => {
 				return {
@@ -37,7 +39,7 @@ const Posts: FC = () => {
 			});
 			setUserNames(usernames);
 		}
-	}, [posts, users]);
+	}, [posts, users, user, navigate]);
 
 	const handleClick = (postId: number) => {
 		navigate(`${postId}`);
@@ -48,6 +50,9 @@ const Posts: FC = () => {
 			{isLoading && <Loading />}
 			{error && <div className="error">{error}</div>}
 			<div className="posts">
+				<div className="create-new-post-container">
+					<button className="create-new-post">Create Post</button>
+				</div>
 				{posts &&
 					posts.map((post) => (
 						<div

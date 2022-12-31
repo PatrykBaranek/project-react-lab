@@ -10,7 +10,7 @@ import {
 	faBuilding,
 } from '@fortawesome/free-solid-svg-icons';
 import Loading from '../../Common/Loading/Loading';
-import ErrorPage from '../../Common/ErrorPage/ErrorPage';
+import ErrorPage from '../ErrorPage/ErrorPage';
 
 const User: FC = () => {
 	const { data, isLoading, error } = useFetch<IUser[]>(
