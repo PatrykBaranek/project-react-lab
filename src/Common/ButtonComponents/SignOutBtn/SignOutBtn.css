@@ -1,0 +1,26 @@
+/* sign out btn */
+
+.sign-out-btn-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0.5em;
+	border-radius: 50%;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.sign-out-btn-container.light:hover {
+	background-color: var(--light-mode-background-color-hover);
+}
+
+.sign-out-btn-container .sign-out-btn {
+	width: 30px;
+	height: 30px;
+}
+
+/* dark mode */
+
+.sign-out-btn-container.dark:hover {
+	background-color: var(--dark-mode-background-color-hover);
+}

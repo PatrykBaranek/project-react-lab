@@ -1,0 +1,23 @@
+.change-mode {
+	margin-right: auto;
+	height: 40px;
+	width: 40px;
+	padding: 0.5em;
+	border-radius: 50%;
+	transition: 0.3s;
+	cursor: pointer;
+}
+
+.change-mode.light:hover {
+	background-color: var(--light-mode-background-color-hover);
+}
+
+.change-mode img {
+	width: 100%;
+}
+
+/* dark mode */
+
+.change-mode.dark:hover {
+	background-color: var(--dark-mode-background-color-hover);
+}

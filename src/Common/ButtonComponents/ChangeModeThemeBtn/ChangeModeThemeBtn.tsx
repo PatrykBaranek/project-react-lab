@@ -1,13 +1,13 @@
 import { FC, useContext } from 'react';
-import { ThemeMode, ThemeContext } from '../../context/Theme/ThemeContext';
+import { ThemeMode, ThemeContext } from '../../../context/Theme/ThemeContext';
 
 // assets
-import lightDarkThemeIcon from '../../assets/dark-mode-icon.svg';
+import lightDarkThemeIcon from '../../../assets/dark-mode-icon.svg';
 
 // styles
-import './ChangeModeTheme.css';
+import './ChangeModeThemeBtn.css';
 
-export const ChangeModeTheme: FC = () => {
+export const ChangeModeThemeBtn: FC = () => {
 	const { state: mode, changeTheme } = useContext(ThemeContext);
 
 	console.log(mode);

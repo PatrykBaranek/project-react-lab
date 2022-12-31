@@ -1,0 +1,25 @@
+.account-btn-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-left: auto;
+	padding: 0.5em;
+	border-radius: 50%;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.account-btn-container.light:hover {
+	background-color: var(--light-mode-background-color-hover);
+}
+
+.account-btn-container .account-btn {
+	width: 40px;
+	height: 40px;
+}
+
+/* dark mode */
+
+.account-btn-container.dark:hover {
+	background-color: var(--dark-mode-background-color-hover);
+}
