@@ -33,38 +33,3 @@ export const LoginProvider: React.FC<ILoginProviderProps> = ({ children }) => {
 		</AuthContext.Provider>
 	);
 };
-
-///
-// const Login: FC<LoginProps> = ({ onLogin }) => {
-// 	const usernameInputRef = useRef<HTMLInputElement | null>(null);
-// 	const passwordInputRef = useRef<HTMLInputElement | null>(null);
-
-// 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-// 		e.preventDefault();
-
-// 		const user: ILogin = {
-// 			username: usernameInputRef.current?.value,
-// 			password: passwordInputRef.current?.value,
-// 		};
-
-// 		dispatch({ type: 'LOGIN', payload: user });
-// 	};
-
-// 	return (
-// 		<form className="login-form-container" onSubmit={handleSubmit}>
-// 			<div className="login-username">
-// 				<label>
-// 					username:
-// 					<input type="text" name="username" ref={usernameInputRef} required />
-// 				</label>
-// 			</div>
-// 			<div className="login-password">
-// 				<label>
-// 					password:
-// 					<input type="text" name="password" ref={passwordInputRef} required />
-// 				</label>
-// 			</div>
-// 			<button type="submit">login</button>
-// 		</form>
-// 	);
-// };
