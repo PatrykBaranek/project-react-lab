@@ -1,6 +1,6 @@
 .navigation {
 	display: flex;
-	justify-content: flex-end;
+	justify-content: center;
 	align-items: center;
 	height: 5vh;
 	background-color: #ddd;
@@ -9,11 +9,16 @@
 
 .navigation a {
 	display: inline-block;
-	margin-left: 4px;
+	margin-left: 5px;
 	padding: 1.2rem;
-	font-size: 2rem;
+	font-size: 2.5rem;
 	text-decoration: none;
 	color: #111;
+	transition: 0.3s;
+}
+
+.navigation.light a:hover {
+	background-color: var(--light-mode-background-color-hover);
 }
 
 .navigation .activeLink {
@@ -28,6 +33,10 @@
 
 .navigation.dark a {
 	color: #ddd;
+}
+
+.navigation.dark a:hover {
+	background-color: var(--dark-mode-background-color-hover);
 }
 
 .navigation.dark .activeLink {

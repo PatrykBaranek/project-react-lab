@@ -49,27 +49,29 @@ export const Posts: FC = () => {
 		<>
 			{isLoading && <Loading />}
 			{error && <div className="error">{error}</div>}
-			<div className="posts">
+			<div className="posts-container">
+				<h2>Posts</h2>
 				<div className="create-new-post-container">
 					<button className="create-new-post">Create Post</button>
 				</div>
 				{posts &&
 					posts.map((post) => (
 						<div
-							className="card"
+							className="post"
 							key={post.id}
-							onClick={() => handleClick(post.id)}>
-							<div className="card-title">
+							onClick={() => handleClick(post.id)}
+							title="Click to see details">
+							<div className="post-title">
 								<p>{post.title}</p>
 							</div>
-							<div className="card-body">
+							<div className="post-body">
 								<p>
 									{post.body.length > 50
 										? post.body.slice(40, post.body.length - 1) + '...'
 										: post.body}
 								</p>
 							</div>
-							<div className="card-createdBy">
+							<div className="post-createdBy">
 								<p>
 									{
 										usernames?.find(

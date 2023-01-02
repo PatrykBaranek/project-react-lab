@@ -1,14 +1,22 @@
 import { FC, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+	faHouse,
+	faImage,
+	faUsers,
+	faTableList,
+} from '@fortawesome/free-solid-svg-icons';
+
 import { ThemeContext } from '../../context/Theme/ThemeContext';
 import { ChangeModeThemeBtn } from '../../Common/ButtonComponents/ChangeModeThemeBtn/ChangeModeThemeBtn';
 import { AuthContext } from '../../context/Account/AccountContext';
 
 import { AccountBtn } from '../../Common/ButtonComponents/AccountBtn/AccountBtn';
 import { SignOutBtn } from '../../Common/ButtonComponents/SignOutBtn/SignOutBtn';
+import { LoginBtn } from '../../Common/ButtonComponents/LoginBtn/LoginBtn';
 
 import './Nav.css';
-import { LoginBtn } from '../../Common/ButtonComponents/LoginBtn/LoginBtn';
 
 export const Nav: FC = () => {
 	const { state: mode } = useContext(ThemeContext);
@@ -28,29 +36,33 @@ export const Nav: FC = () => {
 						className={({ isActive }) =>
 							isActive ? activeClassname : undefined
 						}
+						title="Home"
 						end>
-						Home
+						<FontAwesomeIcon icon={faHouse} />
 					</NavLink>
 					<NavLink
 						to="posts"
 						className={({ isActive }) =>
 							isActive ? activeClassname : undefined
-						}>
-						Posts
+						}
+						title="Posts">
+						<FontAwesomeIcon icon={faTableList} />
 					</NavLink>
 					<NavLink
 						to="photos"
 						className={({ isActive }) =>
 							isActive ? activeClassname : undefined
-						}>
-						Photos
+						}
+						title="Photos">
+						<FontAwesomeIcon icon={faImage} />
 					</NavLink>
 					<NavLink
 						to="users"
 						className={({ isActive }) =>
 							isActive ? activeClassname : undefined
-						}>
-						Users
+						}
+						title="Users">
+						<FontAwesomeIcon icon={faUsers} />
 					</NavLink>
 					<AccountBtn />
 					<SignOutBtn />
