@@ -1,9 +1,9 @@
 import { FC, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { IPost } from '../../Common/types';
-import useFetch from '../../Hooks/useFetch';
-import Comments from '../Comments/Comments';
+import { useFetch } from '../../Hooks/useFetch';
 import { AuthContext } from '../../context/Account/AccountContext';
+import { Comments } from '../Comments/Comments';
 
 export interface IPostDetailsProps {
 	postId: number;
@@ -12,7 +12,7 @@ export interface IPostDetailsProps {
 	userId: number;
 }
 
-const PostDetails: FC = () => {
+export const PostDetails: FC = () => {
 	const { state: user } = useContext(AuthContext);
 	const navigate = useNavigate();
 	if (!user.isAuthenticated) {
@@ -35,5 +35,3 @@ const PostDetails: FC = () => {
 		</div>
 	);
 };
-
-export default PostDetails;

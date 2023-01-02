@@ -1,16 +1,16 @@
-export interface ILogin {
+export type ILogin = {
 	username: string;
 	password: string;
-}
+};
 
 export interface AuthState {
 	isAuthenticated: boolean;
-	user: ILogin | null;
+	login: ILogin | null;
 }
 
 export interface AuthAction {
 	type: 'LOGIN' | 'LOGOUT';
-	payload?: any;
+	payload: ILogin | null;
 }
 
 export const authReducer = (
@@ -21,12 +21,12 @@ export const authReducer = (
 		case 'LOGIN':
 			return {
 				isAuthenticated: true,
-				user: action.payload,
+				login: action.payload,
 			};
 		case 'LOGOUT':
 			return {
 				isAuthenticated: false,
-				user: null,
+				login: action.payload,
 			};
 		default:
 			return state;

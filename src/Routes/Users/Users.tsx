@@ -1,8 +1,7 @@
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, useContext, useEffect, useRef, useState } from 'react';
 import { IUser } from '../../Common/types';
-import useFetch from '../../Hooks/useFetch';
+import { useFetch } from '../../Hooks/useFetch';
 
-import './Users.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	faPhone,
@@ -10,9 +9,16 @@ import {
 	faBuilding,
 } from '@fortawesome/free-solid-svg-icons';
 import Loading from '../../Common/Loading/Loading';
-import ErrorPage from '../ErrorPage/ErrorPage';
 
-const User: FC = () => {
+import './Users.css';
+import { AuthContext } from '../../context/Account/AccountContext';
+import { useNavigate } from 'react-router-dom';
+import { ErrorPage } from '../ErrorPage/ErrorPage';
+
+export const Users: FC = () => {
+	const { state: user } = useContext(AuthContext);
+	const navigate = useNavigate();
+
 	const { data, isLoading, error } = useFetch<IUser[]>(
 		'https://jsonplaceholder.typicode.com/users'
 	);
@@ -24,12 +30,15 @@ const User: FC = () => {
 	}
 
 	useEffect(() => {
+		if (!user.isAuthenticated) {
+			navigate('/login');
+		}
 		if (searchPhrase !== '' && users.current !== undefined) {
 			users.current = users.current.filter((user) =>
 				user.name.toLowerCase().includes(searchPhrase.trim().toLowerCase())
 			);
 		}
-	}, [searchPhrase, users]);
+	}, [searchPhrase, users, navigate, user]);
 
 	return (
 		<div className="user-container">
@@ -81,5 +90,3 @@ const User: FC = () => {
 		</div>
 	);
 };
-
-export default User;

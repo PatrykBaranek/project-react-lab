@@ -1,15 +1,15 @@
 import { FC } from 'react';
 import Loading from '../../Common/Loading/Loading';
 import { IComment } from '../../Common/types';
-import useFetch from '../../Hooks/useFetch';
+import { useFetch } from '../../Hooks/useFetch';
 
 export interface ICommentsProps {
 	postId: string;
 }
 
-const Comments: FC<ICommentsProps> = (props: ICommentsProps) => {
+export const Comments: FC<ICommentsProps> = ({ postId }: ICommentsProps) => {
 	const { data: comments, isLoading } = useFetch<IComment[]>(
-		`https://jsonplaceholder.typicode.com/posts/${props.postId}/comments`
+		`https://jsonplaceholder.typicode.com/posts/${postId}/comments`
 	);
 
 	return (
@@ -29,5 +29,3 @@ const Comments: FC<ICommentsProps> = (props: ICommentsProps) => {
 		</>
 	);
 };
-
-export default Comments;

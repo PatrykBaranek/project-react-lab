@@ -5,7 +5,7 @@ export interface IPhotoProps {
 	photos: IPhoto[] | IPhoto | undefined;
 }
 
-const Photos: FC<IPhotoProps> = ({ photos }) => {
+export const Photos: FC<IPhotoProps> = ({ photos }) => {
 	return (
 		<div className="photos">
 			{photos instanceof Array ? (
@@ -26,5 +26,3 @@ const Photos: FC<IPhotoProps> = ({ photos }) => {
 		</div>
 	);
 };
-
-export default Photos;

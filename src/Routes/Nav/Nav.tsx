@@ -10,7 +10,7 @@ import { SignOutBtn } from '../../Common/ButtonComponents/SignOutBtn/SignOutBtn'
 import './Nav.css';
 import { LoginBtn } from '../../Common/ButtonComponents/LoginBtn/LoginBtn';
 
-const Nav: FC = () => {
+export const Nav: FC = () => {
 	const { state: mode } = useContext(ThemeContext);
 	const { state: user } = useContext(AuthContext);
 
@@ -59,4 +59,3 @@ const Nav: FC = () => {
 		</nav>
 	);
 };
-export default Nav;

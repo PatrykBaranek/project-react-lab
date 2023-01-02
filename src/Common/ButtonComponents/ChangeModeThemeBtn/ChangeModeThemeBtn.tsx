@@ -10,15 +10,13 @@ import './ChangeModeThemeBtn.css';
 export const ChangeModeThemeBtn: FC = () => {
 	const { state: mode, changeTheme } = useContext(ThemeContext);
 
-	console.log(mode);
-
 	return (
 		<div
 			className={`change-mode ${mode}`}
 			onClick={() =>
 				changeTheme(mode === ThemeMode.dark ? ThemeMode.light : ThemeMode.dark)
 			}
-			placeholder="change theme mode">
+			title="Change theme mode">
 			<img
 				src={lightDarkThemeIcon}
 				alt="dark/light mode"

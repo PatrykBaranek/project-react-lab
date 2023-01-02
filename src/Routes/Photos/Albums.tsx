@@ -5,7 +5,7 @@ interface IAlbumsProps {
 	albums: IAlbum | IAlbum[] | undefined;
 }
 
-const Albums: FC<IAlbumsProps> = ({ albums }) => {
+export const Albums: FC<IAlbumsProps> = ({ albums }) => {
 	return (
 		<div className="albums">
 			{albums instanceof Array ? (
@@ -24,5 +24,3 @@ const Albums: FC<IAlbumsProps> = ({ albums }) => {
 		</div>
 	);
 };
-
-export default Albums;

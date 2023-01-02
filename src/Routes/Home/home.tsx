@@ -2,7 +2,7 @@ import { FC, useContext, useEffect } from 'react';
 import { AuthContext } from '../../context/Account/AccountContext';
 import { useNavigate } from 'react-router-dom';
 
-const Home: FC = () => {
+export const Home: FC = () => {
 	const { state: user } = useContext(AuthContext);
 	const navigate = useNavigate();
 
@@ -18,5 +18,3 @@ const Home: FC = () => {
 		</>
 	);
 };
-
-export default Home;

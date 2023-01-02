@@ -1,15 +1,15 @@
 import React, { FC, useContext, useEffect, useState } from 'react';
-import useFetch from '../../Hooks/useFetch';
+import { useFetch } from '../../Hooks/useFetch';
 import { IAlbum, IPhoto } from '../../Common/types';
 
 import Loading from '../../Common/Loading/Loading';
-import Albums from './Albums';
-import Photos from './Photos';
-import ErrorPage from '../ErrorPage/ErrorPage';
 import { AuthContext } from '../../context/Account/AccountContext';
 import { useNavigate } from 'react-router-dom';
+import { Photos } from './Photos';
+import { Albums } from './Albums';
+import { ErrorPage } from '../ErrorPage/ErrorPage';
 
-const AlbumPhotos: FC = () => {
+export const AlbumPhotos: FC = () => {
 	const { state: user } = useContext(AuthContext);
 	const navigate = useNavigate();
 	if (!user.isAuthenticated) {
@@ -93,5 +93,3 @@ const AlbumPhotos: FC = () => {
 		</>
 	);
 };
-
-export default AlbumPhotos;

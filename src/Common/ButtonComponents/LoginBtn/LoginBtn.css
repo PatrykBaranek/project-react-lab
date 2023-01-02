@@ -10,9 +10,13 @@
 	transition: 0.3s;
 }
 
+.navigation.light .login-btn:hover {
+	background-color: var(--light-mode-background-color-hover);
+}
+
 /* dark mode */
 
 .navigation.dark .login-btn:hover {
-	background-color: #ddd;
-	color: #111;
+	background-color: var(--dark-mode-background-color-hover);
+	color: var(--dark-mode-font-color);
 }

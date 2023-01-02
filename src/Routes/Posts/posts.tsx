@@ -2,7 +2,7 @@ import { FC, useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Loading from '../../Common/Loading/Loading';
 import { IPost, IUser } from '../../Common/types';
-import useFetch from '../../Hooks/useFetch';
+import { useFetch } from '../../Hooks/useFetch';
 import './Posts.css';
 import { AuthContext } from '../../context/Account/AccountContext';
 
@@ -12,7 +12,7 @@ export interface IUsernames {
 	postId: number;
 }
 
-const Posts: FC = () => {
+export const Posts: FC = () => {
 	const { state: user } = useContext(AuthContext);
 	const {
 		data: posts,
@@ -84,5 +84,3 @@ const Posts: FC = () => {
 		</>
 	);
 };
-
-export default Posts;
