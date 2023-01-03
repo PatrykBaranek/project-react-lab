@@ -1,10 +1,11 @@
 import { FC, useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Loading from '../../Common/Loading/Loading';
+import { Loading } from '../../Common/Loading/Loading';
 import { IPost, IUser } from '../../Common/types';
 import { useFetch } from '../../Hooks/useFetch';
 import './Posts.css';
 import { AuthContext } from '../../context/Account/AccountContext';
+import { ThemeContext } from '../../context/Theme/ThemeContext';
 
 export interface IUsernames {
 	userId: number;
@@ -14,6 +15,7 @@ export interface IUsernames {
 
 export const Posts: FC = () => {
 	const { state: user } = useContext(AuthContext);
+	const { state: mode } = useContext(ThemeContext);
 	const {
 		data: posts,
 		error,
@@ -49,7 +51,7 @@ export const Posts: FC = () => {
 		<>
 			{isLoading && <Loading />}
 			{error && <div className="error">{error}</div>}
-			<div className="posts-container">
+			<div className={`posts-container ${mode}`}>
 				<h2>Posts</h2>
 				<div className="create-new-post-container">
 					<button className="create-new-post">Create Post</button>
