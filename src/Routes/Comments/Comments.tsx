@@ -1,6 +1,6 @@
-import { FC, useContext } from 'react';
+import React, { FC, useContext, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faComments } from '@fortawesome/free-solid-svg-icons';
+import { faComments, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 import { Loading } from '../../Common/Loading/Loading';
 import { IComment } from '../../Common/types';
@@ -8,17 +8,39 @@ import { useFetch } from '../../Hooks/useFetch';
 
 import './Comments.css';
 import { ThemeContext } from '../../context/Theme/ThemeContext';
+import { CreateNewCommentForm } from '../../Common/CreateNewCommentForm/CreateNewCommentForm';
+import { AuthContext } from '../../context/Account/AccountContext';
 
 export interface ICommentsProps {
-	postId: string;
+	postId: number;
 }
 
 export const Comments: FC<ICommentsProps> = ({ postId }: ICommentsProps) => {
 	const { state: mode } = useContext(ThemeContext);
-
-	const { data: comments, isLoading } = useFetch<IComment[]>(
+	const { state: user } = useContext(AuthContext);
+	const [openCreateNewCommentForm, setOpenCreateNewCommentForm] =
+		useState(false);
+	const [comments, setComments] = useState<IComment[]>([]);
+	const { data: commentsFetch, isLoading } = useFetch<IComment[]>(
 		`https://jsonplaceholder.typicode.com/posts/${postId}/comments`
 	);
+
+	useEffect(() => {
+		commentsFetch && setComments(commentsFetch);
+	}, [commentsFetch]);
+
+	const handleCloseForm = () => {
+		setOpenCreateNewCommentForm(false);
+	};
+
+	const handleAddComment = (newComment: IComment) => {
+		newComment.id = comments[comments.length - 1].id + 1;
+		setComments([...comments, newComment]);
+	};
+
+	const handleDelete = (commentId: number) => {
+		setComments(comments.filter((comment) => comment.id !== commentId));
+	};
 
 	return (
 		<>
@@ -28,15 +50,36 @@ export const Comments: FC<ICommentsProps> = ({ postId }: ICommentsProps) => {
 					<b>{comments?.length} </b>
 					<FontAwesomeIcon icon={faComments} />
 				</div>
-				<button className="create-comment-btn">Create New Comment</button>
+				<CreateNewCommentForm
+					postId={postId}
+					open={openCreateNewCommentForm}
+					handleOnClose={handleCloseForm}
+					handleAddNewComment={handleAddComment}
+					username={user.login?.username}
+				/>
+				{!openCreateNewCommentForm && (
+					<button
+						className="create-comment-btn"
+						onClick={() => setOpenCreateNewCommentForm(true)}>
+						Create New Comment
+					</button>
+				)}
 				{comments &&
 					comments.map((comment) => (
 						<div key={comment.id} className="comment">
+							{user.login?.username === comment.email && (
+								<button
+									className="delete-comment-btn"
+									title="delete comment"
+									onClick={() => handleDelete(comment.id)}>
+									<FontAwesomeIcon icon={faXmark} />
+								</button>
+							)}
 							<div className="comment-author">
 								<p>{comment.email}</p>
 							</div>
 							<div className="comment-name">
-								<p>{comment.name}</p>
+								{comment.name ? <p>{comment.name}</p> : <p>{comment.title}</p>}
 							</div>
 							<div className="comment-body">
 								<p>{comment.body}</p>

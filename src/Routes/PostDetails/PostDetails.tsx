@@ -7,6 +7,7 @@ import { Comments } from '../Comments/Comments';
 
 import './PostDetails.css';
 import { ThemeContext } from '../../context/Theme/ThemeContext';
+import { Loading } from '../../Common/Loading/Loading';
 
 export interface IPostDetailsProps {
 	postId: number;
@@ -25,9 +26,11 @@ export const PostDetails: FC = () => {
 
 	const { id } = useParams();
 
-	const { data: post } = useFetch<IPost>(
+	const { data: post, isLoading } = useFetch<IPost>(
 		'https://jsonplaceholder.typicode.com/posts/' + id
 	);
+
+	if (isLoading) return <Loading />;
 
 	return (
 		<div className={'post-details-container ' + mode}>
@@ -38,7 +41,7 @@ export const PostDetails: FC = () => {
 				<p>{post?.body}</p>
 			</div>
 			<br />
-			<Comments postId={String(id)} />
+			<Comments postId={Number(id)} />
 		</div>
 	);
 };

@@ -17,6 +17,7 @@
 	justify-self: center;
 	align-self: center;
 	background: var(--light-mode-background-color);
+	border: 1px solid var(--light-mode-font-color);
 	border-radius: 25px;
 	padding: 1.5em 2em;
 	cursor: pointer;
@@ -30,6 +31,20 @@
 	font-size: 1.5rem;
 	line-height: 1.75rem;
 }
+.comments-container .comment .delete-comment-btn {
+	align-self: flex-end;
+	border-style: none;
+	background: none;
+	color: var(--light-mode-font-color);
+	margin-right: 20px;
+	padding: 0.3em;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.comments-container .comment .delete-comment-btn:hover {
+	background-color: #666;
+}
 
 /* dark mode */
 
@@ -41,5 +56,9 @@
 .comments-container.dark .create-comment-btn {
 	border-color: var(--dark-mode-font-color);
 	background-color: var(--dark-mode-background-color);
+	color: var(--dark-mode-font-color);
+}
+
+.comments-container .comment .delete-comment-btn {
 	color: var(--dark-mode-font-color);
 }
