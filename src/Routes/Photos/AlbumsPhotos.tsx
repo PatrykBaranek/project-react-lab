@@ -2,7 +2,7 @@ import React, { FC, useContext, useEffect, useState } from 'react';
 import { useFetch } from '../../Hooks/useFetch';
 import { IAlbum, IPhoto } from '../../Common/types';
 
-import Loading from '../../Common/Loading/Loading';
+import { Loading } from '../../Common/Loading/Loading';
 import { AuthContext } from '../../context/Account/AccountContext';
 import { useNavigate } from 'react-router-dom';
 import { Photos } from './Photos';

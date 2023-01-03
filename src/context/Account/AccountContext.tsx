@@ -1,17 +1,18 @@
 import { createContext, useReducer } from 'react';
 import { AuthState, ILogin, authReducer } from './AccountReducers';
 
-const initialState: AuthState = {
+const initialLoginState: AuthState = {
 	isAuthenticated: false,
 	login: null,
 };
+const initialRegisterState = {};
 
 export const AuthContext = createContext<{
 	state: AuthState;
 	handleLogin: (login: ILogin) => void;
 	handleLogout: () => void;
 }>({
-	state: initialState,
+	state: initialLoginState,
 	handleLogin: () => {},
 	handleLogout: () => {},
 });
@@ -21,7 +22,7 @@ interface ILoginProviderProps {
 }
 
 export const LoginProvider: React.FC<ILoginProviderProps> = ({ children }) => {
-	const [state, dispatch] = useReducer(authReducer, initialState);
+	const [state, dispatch] = useReducer(authReducer, initialLoginState);
 
 	const handleLogin = (login: ILogin) => {
 		dispatch({ type: 'LOGIN', payload: login });

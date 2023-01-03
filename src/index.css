@@ -1,6 +1,10 @@
 :root {
 	--dark-mode-font-color: #ddd;
 	--dark-mode-background-color: #333;
+
+	--light-mode-font-color: #333;
+	--light-mode-background-color: #ddd;
+
 	--dark-mode-background-color-hover: #555;
 	--light-mode-background-color-hover: #ccc;
 }

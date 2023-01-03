@@ -8,7 +8,7 @@ import {
 	faMailBulk,
 	faBuilding,
 } from '@fortawesome/free-solid-svg-icons';
-import Loading from '../../Common/Loading/Loading';
+import { Loading } from '../../Common/Loading/Loading';
 
 import './Users.css';
 import { AuthContext } from '../../context/Account/AccountContext';
