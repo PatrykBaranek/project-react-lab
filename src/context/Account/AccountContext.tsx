@@ -5,7 +5,6 @@ const initialLoginState: AuthState = {
 	isAuthenticated: false,
 	login: null,
 };
-const initialRegisterState = {};
 
 export const AuthContext = createContext<{
 	state: AuthState;

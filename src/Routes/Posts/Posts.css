@@ -14,12 +14,12 @@
 	margin-bottom: 40px;
 }
 
-.posts-container .create-new-post-container {
+.posts-container .create-post-container {
 	justify-self: center;
 	margin-bottom: 40px;
 }
 
-.posts-container .create-new-post-container button {
+.posts-container .create-post-container button {
 	width: 150px;
 	height: 50px;
 	padding: 1em 2em;
@@ -31,7 +31,7 @@
 	transition: 0.3s;
 }
 
-.posts-container .create-new-post-container button:hover {
+.posts-container .create-post-container button:hover {
 	transform: scale(1.1);
 }
 
