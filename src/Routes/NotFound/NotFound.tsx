@@ -1,5 +1,14 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const NotFound: FC = () => {
-	return <div> Not Found 404</div>;
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		setTimeout(() => {
+			navigate(-1);
+		}, 1000);
+	}, [navigate]);
+
+	return <div> Not Found</div>;
 };

@@ -19,15 +19,14 @@ export interface IPostDetailsProps {
 export const PostDetails: FC = () => {
 	const { state: user } = useContext(AuthContext);
 	const { state: mode } = useContext(ThemeContext);
+	const { id: postId } = useParams();
 	const navigate = useNavigate();
 	if (!user.isAuthenticated) {
 		navigate('/login');
 	}
 
-	const { id } = useParams();
-
 	const { data: post, isLoading } = useFetch<IPost>(
-		'https://jsonplaceholder.typicode.com/posts/' + id
+		'https://jsonplaceholder.typicode.com/posts/' + postId
 	);
 
 	if (isLoading) return <Loading />;
@@ -41,7 +40,7 @@ export const PostDetails: FC = () => {
 				<p>{post?.body}</p>
 			</div>
 			<br />
-			<Comments postId={Number(id)} />
+			<Comments postId={Number(postId)} />
 		</div>
 	);
 };

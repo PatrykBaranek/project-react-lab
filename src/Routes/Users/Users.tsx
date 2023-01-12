@@ -45,6 +45,8 @@ export const Users: FC = () => {
 			{isLoading && <Loading />}
 			{error && <ErrorPage errorMessage={error} />}
 
+			<h2>Users</h2>
+
 			<div className="search-user">
 				<input
 					type="text"
