@@ -1,0 +1,37 @@
+.photos-albums-container {
+	padding: 2em;
+}
+
+.photos-albums-container .search-albums-photos {
+	display: flex;
+	justify-content: center;
+}
+
+.photos-albums-container .search-albums-photos input {
+	padding: 0.5em 1.75em;
+	font-size: 1.8rem;
+	border-top-left-radius: 2rem;
+	border-bottom-left-radius: 2rem;
+}
+
+.photos-albums-container .search-albums-photos input::-webkit-outer-spin-button,
+.photos-albums-container
+	.search-albums-photos
+	input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+.photos-albums-container .search-albums-photos input[type='number'] {
+	-moz-appearance: textfield;
+}
+
+.photos-albums-container .search-albums-photos select {
+	border-top-right-radius: 2rem;
+	border-bottom-right-radius: 2rem;
+}
+
+.photos-albums-container .search-albums-photos select option {
+	display: block;
+	padding: 2rem;
+	font-size: 1.5rem;
+}
