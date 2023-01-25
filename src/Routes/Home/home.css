@@ -1,0 +1,30 @@
+.home-container {
+	margin: 0 auto;
+}
+
+.home-container .page-title {
+	margin-top: 40px;
+	font-size: 4rem;
+	text-align: center;
+}
+
+.home-container .post-album-links-container {
+	margin-top: 80px;
+	display: flex;
+	justify-content: space-around;
+	font-size: 3rem;
+	padding: 1em;
+}
+
+.home-container .post-album-links-container .album-link,
+.home-container .post-album-links-container .posts-link {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.home-container .post-album-links-container svg {
+	font-size: 8rem;
+	cursor: pointer;
+}
