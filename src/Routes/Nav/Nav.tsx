@@ -16,7 +16,6 @@ import { selectThemeMode } from '../../app/Theme/themeSlice';
 
 export const Nav: FC = () => {
   const mode = useAppSelector(selectThemeMode);
-  console.log(mode);
 
   const { state: user } = useContext(AuthContext);
 
