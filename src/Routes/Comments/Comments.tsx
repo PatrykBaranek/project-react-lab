@@ -2,12 +2,12 @@ import { useContext, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComments, faXmark } from '@fortawesome/free-solid-svg-icons';
 
-import { Loading } from '../../Common/Loading/Loading';
+import { Loading } from '../../Common/components/Loading/Loading';
 import { IComment } from '../../Common/types';
 import { useFetch } from '../../Hooks/useFetch';
 
 import './Comments.css';
-import { CreateNewCommentForm } from '../../Common/CreateNewCommentForm/CreateNewCommentForm';
+import { CreateNewCommentForm } from '../../Common/components/CreateNewCommentForm/CreateNewCommentForm';
 import { AuthContext } from '../../context/Account/AccountContext';
 import { useAppSelector } from '../../app/hooks';
 import { selectThemeMode } from '../../app/Theme/themeSlice';

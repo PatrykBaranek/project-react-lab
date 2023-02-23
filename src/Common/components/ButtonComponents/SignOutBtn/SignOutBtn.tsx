@@ -1,13 +1,12 @@
 import { useContext } from 'react';
-import { AuthContext } from '../../../context/Account/AccountContext';
+import { AuthContext } from '../../../../context/Account/AccountContext';
 
 import signOutIcon from '../../../assets/sign-out-icon.svg';
-import { ThemeMode } from '../../../context/Theme/ThemeContext';
 
 import './SignOutBtn.css';
 import { useNavigate } from 'react-router-dom';
-import { useAppSelector } from '../../../app/hooks';
-import { selectThemeMode } from '../../../app/Theme/themeSlice';
+import { useAppSelector } from '../../../../app/hooks';
+import { ThemeMode, selectThemeMode } from '../../../../app/Theme/themeSlice';
 
 export const SignOutBtn: React.FC = () => {
   const { handleLogout } = useContext(AuthContext);

@@ -4,8 +4,8 @@ import lightDarkThemeIcon from '../../../assets/dark-mode-icon.svg';
 // styles
 import './ChangeModeThemeBtn.css';
 
-import { ThemeMode, changeMode, selectThemeMode } from '../../../app/Theme/themeSlice';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { ThemeMode, changeMode, selectThemeMode } from '../../../../app/Theme/themeSlice';
+import { useAppDispatch, useAppSelector } from '../../../../app/hooks';
 
 export const ChangeModeThemeBtn: React.FC = () => {
   const mode = useAppSelector(selectThemeMode);

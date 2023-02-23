@@ -1,10 +1,9 @@
 import accountIcon from '../../../assets/account-icon.svg';
 
 import './AccountBtn.css';
-import { ThemeMode } from '../../../context/Theme/ThemeContext';
 import { useNavigate } from 'react-router';
-import { useAppSelector } from '../../../app/hooks';
-import { selectThemeMode } from '../../../app/Theme/themeSlice';
+import { useAppSelector } from '../../../../app/hooks';
+import { ThemeMode, selectThemeMode } from '../../../../app/Theme/themeSlice';
 
 export const AccountBtn: React.FC = () => {
   const mode = useAppSelector(selectThemeMode);

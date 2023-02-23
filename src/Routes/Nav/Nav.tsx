@@ -3,12 +3,12 @@ import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faImage, faUsers, faTableList } from '@fortawesome/free-solid-svg-icons';
 
-import { ChangeModeThemeBtn } from '../../Common/ButtonComponents/ChangeModeThemeBtn/ChangeModeThemeBtn';
+import { ChangeModeThemeBtn } from '../../Common/components/ButtonComponents/ChangeModeThemeBtn/ChangeModeThemeBtn';
 import { AuthContext } from '../../context/Account/AccountContext';
 
-import { AccountBtn } from '../../Common/ButtonComponents/AccountBtn/AccountBtn';
-import { SignOutBtn } from '../../Common/ButtonComponents/SignOutBtn/SignOutBtn';
-import { LoginBtn } from '../../Common/ButtonComponents/LoginBtn/LoginBtn';
+import { AccountBtn } from '../../Common/components/ButtonComponents/AccountBtn/AccountBtn';
+import { SignOutBtn } from '../../Common/components/ButtonComponents/SignOutBtn/SignOutBtn';
+import { LoginBtn } from '../../Common/components/ButtonComponents/LoginBtn/LoginBtn';
 
 import './Nav.css';
 import { useAppSelector } from '../../app/hooks';

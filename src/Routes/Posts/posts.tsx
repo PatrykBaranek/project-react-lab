@@ -1,11 +1,11 @@
 import { FC, useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Loading } from '../../Common/Loading/Loading';
+import { Loading } from '../../Common/components/Loading/Loading';
 import { IPost, IUser } from '../../Common/types';
 import { useFetch } from '../../Hooks/useFetch';
 import './Posts.css';
 import { AuthContext } from '../../context/Account/AccountContext';
-import { CreateNewPostForm } from '../../Common/CreateNewPostForm/CreateNewPostForm';
+import { CreateNewPostForm } from '../../Common/components/CreateNewPostForm/CreateNewPostForm';
 import { useAppSelector } from '../../app/hooks';
 import { selectThemeMode } from '../../app/Theme/themeSlice';
 

@@ -6,7 +6,7 @@ import { AuthContext } from '../../context/Account/AccountContext';
 import { Comments } from '../Comments/Comments';
 
 import './PostDetails.css';
-import { Loading } from '../../Common/Loading/Loading';
+import { Loading } from '../../Common/components/Loading/Loading';
 import { useAppSelector } from '../../app/hooks';
 import { selectThemeMode } from '../../app/Theme/themeSlice';
 
