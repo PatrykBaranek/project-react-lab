@@ -1,10 +1,10 @@
-import signOutIcon from '../../../../assets/sign-out-icon.svg';
+import signOutIcon from '../../../assets/sign-out-icon.svg';
+import { logout } from '../../../app/Auth/authSlice';
+import { ThemeMode, selectThemeMode } from '../../../app/Theme/themeSlice';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 
 import './SignOutBtn.css';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../../../app/hooks';
-import { ThemeMode, selectThemeMode } from '../../../../app/Theme/themeSlice';
-import { logout } from '../../../../app/Auth/authSlice';
 
 export const SignOutBtn: React.FC = () => {
   const dispatch = useAppDispatch();

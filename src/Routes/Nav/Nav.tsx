@@ -2,16 +2,14 @@ import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faImage, faUsers, faTableList } from '@fortawesome/free-solid-svg-icons';
 
-import { ChangeModeThemeBtn } from '../../Common/components/ButtonComponents/ChangeModeThemeBtn/ChangeModeThemeBtn';
-
-import { AccountBtn } from '../../Common/components/ButtonComponents/AccountBtn/AccountBtn';
-import { SignOutBtn } from '../../Common/components/ButtonComponents/SignOutBtn/SignOutBtn';
-import { LoginBtn } from '../../Common/components/ButtonComponents/LoginBtn/LoginBtn';
-
 import './Nav.css';
 import { useAppSelector } from '../../app/hooks';
 import { selectThemeMode } from '../../app/Theme/themeSlice';
 import { selectAuth } from '../../app/Auth/authSlice';
+import { ChangeModeThemeBtn } from '../../components/ButtonComponents/ChangeModeThemeBtn/ChangeModeThemeBtn';
+import { LoginBtn } from '../../components/ButtonComponents/LoginBtn/LoginBtn';
+import { AccountBtn } from '../../components/ButtonComponents/AccountBtn/AccountBtn';
+import { SignOutBtn } from '../../components/ButtonComponents/SignOutBtn/SignOutBtn';
 
 export const Nav: React.FC = () => {
   const mode = useAppSelector(selectThemeMode);

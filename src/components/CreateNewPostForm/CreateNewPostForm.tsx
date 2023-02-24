@@ -3,7 +3,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { createPortal } from 'react-dom';
 
 import './CreateNewPostForm.css';
-import { IPost } from '../../types';
+import { IPost } from '../../types/types';
 import { FormEvent, useRef } from 'react';
 
 export interface ICreateNewPostFormProps {

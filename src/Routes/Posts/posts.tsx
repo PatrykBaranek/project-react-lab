@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Loading } from '../../Common/components/Loading/Loading';
-import { IPost, IUser } from '../../Common/types';
+
+import { IPost, IUser } from '../../types/types';
 import { useFetch } from '../../Hooks/useFetch';
 import './Posts.css';
-import { CreateNewPostForm } from '../../Common/components/CreateNewPostForm/CreateNewPostForm';
+
 import { useAppSelector } from '../../app/hooks';
 import { selectThemeMode } from '../../app/Theme/themeSlice';
 import { selectAuth } from '../../app/Auth/authSlice';
+import { Loading } from '../../components/Loading/Loading';
+import { CreateNewPostForm } from '../../components/CreateNewPostForm/CreateNewPostForm';
 
 export interface IUsernames {
   userId: number;

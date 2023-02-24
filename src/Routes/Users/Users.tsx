@@ -1,16 +1,16 @@
 import { FC, useEffect, useRef, useState } from 'react';
-import { IUser } from '../../Common/types';
+import { IUser } from '../../types/types';
 import { useFetch } from '../../Hooks/useFetch';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faMailBulk, faBuilding } from '@fortawesome/free-solid-svg-icons';
-import { Loading } from '../../Common/components/Loading/Loading';
 
 import './Users.css';
 import { useNavigate } from 'react-router-dom';
 import { ErrorPage } from '../ErrorPage/ErrorPage';
 import { useAppSelector } from '../../app/hooks';
 import { selectAuth } from '../../app/Auth/authSlice';
+import { Loading } from '../../components/Loading/Loading';
 
 export const Users: FC = () => {
   const user = useAppSelector(selectAuth);

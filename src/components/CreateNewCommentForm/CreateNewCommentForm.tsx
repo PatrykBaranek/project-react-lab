@@ -3,9 +3,9 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useRef } from 'react';
 import { createPortal } from 'react-dom';
 
-import { IComment } from '../../types';
 import './CreateNewCommentForm.css';
 import React from 'react';
+import { IComment } from '../../types/types';
 
 export interface ICreateNewCommentFormProps {
   postId: number;

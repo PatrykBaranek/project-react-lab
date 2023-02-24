@@ -1,13 +1,14 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { IPost } from '../../Common/types';
+import { IPost } from '../../types/types';
 import { useFetch } from '../../Hooks/useFetch';
 import { Comments } from '../Comments/Comments';
 
 import './PostDetails.css';
-import { Loading } from '../../Common/components/Loading/Loading';
+
 import { useAppSelector } from '../../app/hooks';
 import { selectThemeMode } from '../../app/Theme/themeSlice';
 import { selectAuth } from '../../app/Auth/authSlice';
+import { Loading } from '../../components/Loading/Loading';
 
 export interface IPostDetailsProps {
   postId: number;

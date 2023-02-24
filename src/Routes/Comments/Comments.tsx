@@ -2,15 +2,16 @@ import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComments, faXmark } from '@fortawesome/free-solid-svg-icons';
 
-import { Loading } from '../../Common/components/Loading/Loading';
-import { IComment } from '../../Common/types';
+import { IComment } from '../../types/types';
 import { useFetch } from '../../Hooks/useFetch';
 
 import './Comments.css';
-import { CreateNewCommentForm } from '../../Common/components/CreateNewCommentForm/CreateNewCommentForm';
+
 import { useAppSelector } from '../../app/hooks';
 import { selectThemeMode } from '../../app/Theme/themeSlice';
 import { selectAuth } from '../../app/Auth/authSlice';
+import { Loading } from '../../components/Loading/Loading';
+import { CreateNewCommentForm } from '../../components/CreateNewCommentForm/CreateNewCommentForm';
 
 export interface ICommentsProps {
   postId: number;
