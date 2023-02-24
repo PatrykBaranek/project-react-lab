@@ -1,17 +1,8 @@
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../app/hooks';
 import { selectAuth } from '../../app/Auth/authSlice';
 
 export const Dashboard: React.FC = () => {
   const user = useAppSelector(selectAuth);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!user.isAuthenticated) {
-      navigate('/login');
-    }
-  }, [navigate, user]);
 
   return (
     <div className="dashboard-container">

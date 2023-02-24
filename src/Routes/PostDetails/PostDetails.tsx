@@ -1,11 +1,10 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Comments } from '../Comments/Comments';
 
 import './PostDetails.css';
 
 import { useAppSelector } from '../../app/hooks';
 import { selectThemeMode } from '../../app/Theme/themeSlice';
-import { selectAuth } from '../../app/Auth/authSlice';
 import { selectPostById } from '../../app/Posts/postsSlice';
 
 export interface IPostDetailsProps {
@@ -17,13 +16,7 @@ export interface IPostDetailsProps {
 
 export const PostDetails: React.FC = () => {
   const mode = useAppSelector(selectThemeMode);
-  const user = useAppSelector(selectAuth);
   const { id: postId } = useParams();
-
-  const navigate = useNavigate();
-  if (!user.isAuthenticated) {
-    navigate('/login');
-  }
 
   const post = useAppSelector((state) => selectPostById(state, postId as string));
 

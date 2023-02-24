@@ -16,13 +16,6 @@ import { Albums, ISearchAlbumParams } from '../../components/AlbumsComponent/Alb
 export type SearchType = 'albumId' | 'photoId';
 
 export const AlbumPhotos: React.FC = () => {
-  const user = useAppSelector(selectAuth);
-
-  const navigate = useNavigate();
-  if (!user.isAuthenticated) {
-    navigate('/login');
-  }
-
   const [url, setUrl] = useState<string>('https://jsonplaceholder.typicode.com/photos/');
 
   const { data, error, isLoading } = useFetch<IPhoto[] | IAlbum[] | IPhoto | IAlbum>(url);

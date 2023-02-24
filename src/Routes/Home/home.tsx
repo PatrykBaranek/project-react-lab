@@ -1,21 +1,15 @@
-import { FC, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { FC } from 'react';
 
 import './home.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage, faTable } from '@fortawesome/free-solid-svg-icons';
 import { useAppSelector } from '../../app/hooks';
 import { selectAuth } from '../../app/Auth/authSlice';
+import { useNavigate } from 'react-router-dom';
 
 export const Home: FC = () => {
   const user = useAppSelector(selectAuth);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!user.isAuthenticated) {
-      navigate('/login');
-    }
-  }, [navigate, user]);
 
   return (
     <div className="home-container">
