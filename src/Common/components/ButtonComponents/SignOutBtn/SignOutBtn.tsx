@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { AuthContext } from '../../../../context/Account/AccountContext';
 
-import signOutIcon from '../../../assets/sign-out-icon.svg';
+import signOutIcon from '../../../../assets/sign-out-icon.svg';
 
 import './SignOutBtn.css';
 import { useNavigate } from 'react-router-dom';

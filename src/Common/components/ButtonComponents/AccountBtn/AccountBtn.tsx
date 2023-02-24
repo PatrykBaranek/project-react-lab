@@ -1,4 +1,4 @@
-import accountIcon from '../../../assets/account-icon.svg';
+import accountIcon from '../../../../assets/account-icon.svg';
 
 import './AccountBtn.css';
 import { useNavigate } from 'react-router';

@@ -1,5 +1,5 @@
 // assets
-import lightDarkThemeIcon from '../../../assets/dark-mode-icon.svg';
+import lightDarkThemeIcon from '../../../../assets/dark-mode-icon.svg';
 
 // styles
 import './ChangeModeThemeBtn.css';
