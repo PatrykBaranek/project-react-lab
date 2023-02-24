@@ -1,34 +1,37 @@
 .user-container {
-	margin: 40px;
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	grid-template-rows: repeat(auto-fill, 200px);
-	justify-items: center;
-	align-items: center;
-	gap: 60px;
+  margin: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(auto-fill, 200px);
+  justify-items: center;
+  align-items: center;
+  gap: 60px;
 }
 
+.user-container h2 {
+  grid-column: span 3;
+}
 .user-container .search-user {
-	margin: 0 auto;
-	grid-column: span 3;
-	align-self: center;
+  margin: 0 auto;
+  grid-column: span 3;
+  align-self: center;
 }
 
 .user-container .search-user input {
-	border-radius: 2.5em;
-	padding: 1.2em;
+  border-radius: 2.5em;
+  padding: 1.2em;
 }
 
 .user-container .user-card {
-	box-sizing: content-box;
-	display: flex;
-	flex-direction: column;
-	gap: 30px;
-	width: 300px;
-	height: 350px;
-	padding: 3em;
-	border: 1px solid #ddd;
-	border-radius: 10px;
+  box-sizing: content-box;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 300px;
+  height: 350px;
+  padding: 3em;
+  border: 1px solid #ddd;
+  border-radius: 10px;
 }
 
 .user-container .user-card .user-name,
@@ -36,27 +39,27 @@
 .user-container .user-card .user-email,
 .user-container .user-card .user-phone,
 .user-container .user-card .user-company {
-	margin-left: 5px;
+  margin-left: 5px;
 }
 
 .user-container .user-card .user-name {
-	font-size: 3rem;
-	text-align: center;
+  font-size: 3rem;
+  text-align: center;
 }
 
 .user-container .user-card .user-username {
-	font-size: 2.1rem;
+  font-size: 2.1rem;
 }
 
 .user-container .user-card .user-email {
-	font-size: 1.8rem;
+  font-size: 1.8rem;
 }
 
 .user-container .user-card .user-phone {
-	font-size: 2rem;
+  font-size: 2rem;
 }
 
 .user-container .user-card .user-company {
-	font-size: 2rem;
-	background: linear-gradient(from #2c3e50, to #000000);
+  font-size: 2rem;
+  background: linear-gradient(from #2c3e50, to #000000);
 }
