@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { IPost, IUser } from '../../types/types';
+import { IUser } from '../../types/types';
 import { useFetch } from '../../Hooks/useFetch';
 import './Posts.css';
 
@@ -10,52 +10,25 @@ import { selectThemeMode } from '../../app/Theme/themeSlice';
 import { selectAuth } from '../../app/Auth/authSlice';
 import { Loading } from '../../components/Loading/Loading';
 import { CreateNewPostForm } from '../../components/CreateNewPostForm/CreateNewPostForm';
-
-export interface IUsernames {
-  userId: number;
-  username: string;
-  postId: number;
-}
+import { selectPosts, selectPostsError, selectPostsStatus } from '../../app/Posts/postsSlice';
+import { ErrorPage } from '../ErrorPage/ErrorPage';
+import { PostsList } from './PostsList';
 
 export const Posts: React.FC = () => {
   const user = useAppSelector(selectAuth);
   const mode = useAppSelector(selectThemeMode);
-  const {
-    data: postsFetch,
-    error,
-    isLoading,
-  } = useFetch<IPost[]>('https://jsonplaceholder.typicode.com/posts');
+
+  const posts = useAppSelector(selectPosts);
+  const postsStatus = useAppSelector(selectPostsStatus);
+  const postsError = useAppSelector(selectPostsError);
+
   const { data: usersFetch } = useFetch<IUser[]>('https://jsonplaceholder.typicode.com/users');
-  const [usernames, setUserNames] = useState<IUsernames[]>([]);
-  const [posts, setPosts] = useState<IPost[]>([]);
   const [openCreateNewPostForm, setOpenCreateNewPostForm] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!user.isAuthenticated) {
-      navigate('/login');
-    }
-    if (usersFetch !== undefined && postsFetch !== undefined) {
-      const usernames = usersFetch?.map((user) => {
-        return {
-          userId: user.id,
-          username: user.name,
-          postId: postsFetch?.find((post) => post.userId === user.id)?.id as number,
-        };
-      });
-      setUserNames(usernames);
-      setPosts(postsFetch);
-    }
-  }, [postsFetch, usersFetch, user, navigate]);
-
-  const handleClick = (postId: number) => {
-    navigate(`${postId}`);
-  };
-
-  const handleAddNewPost = (newPost: IPost) => {
-    newPost.id = posts[posts.length - 1].id + 1;
-    setPosts([...posts, newPost]);
-  };
+  if (!user.isAuthenticated) {
+    navigate('/login');
+  }
 
   const handleOpenForm = () => {
     setOpenCreateNewPostForm(true);
@@ -65,44 +38,25 @@ export const Posts: React.FC = () => {
     setOpenCreateNewPostForm(false);
   };
 
+  if (postsStatus === 'pending') {
+    return <Loading />;
+  }
+
+  if (postsStatus === 'failed') {
+    return <ErrorPage errorMessage={postsError} />;
+  }
+
   return (
     <>
-      {isLoading && <Loading />}
-      {error && <div className="error">{error}</div>}
       <div className={`posts-container ${mode}`}>
         <h2>Posts</h2>
         <div className="create-post-container">
-          <CreateNewPostForm
-            isOpen={openCreateNewPostForm}
-            handleCloseForm={handleCloseForm}
-            handleAddNewPost={handleAddNewPost}
-          />
+          <CreateNewPostForm isOpen={openCreateNewPostForm} handleCloseForm={handleCloseForm} />
           <button className="create-new-post-btn" onClick={handleOpenForm}>
             Create Post
           </button>
         </div>
-        {posts.map((post) => (
-          <div
-            className="post"
-            key={post.id}
-            onClick={() => handleClick(post.id)}
-            title="Click to see details"
-          >
-            <div className="post-title">
-              <p>{post.title}</p>
-            </div>
-            <div className="post-body">
-              <p>
-                {post.body.length > 50
-                  ? post.body.slice(40, post.body.length - 1) + '...'
-                  : post.body}
-              </p>
-            </div>
-            <div className="post-createdBy">
-              <p>{usernames?.find((username) => username.userId === post.userId)?.username}</p>
-            </div>
-          </div>
-        ))}
+        <PostsList posts={posts} />
       </div>
     </>
   );

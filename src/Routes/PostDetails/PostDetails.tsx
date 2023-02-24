@@ -1,6 +1,4 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { IPost } from '../../types/types';
-import { useFetch } from '../../Hooks/useFetch';
 import { Comments } from '../Comments/Comments';
 
 import './PostDetails.css';
@@ -8,7 +6,7 @@ import './PostDetails.css';
 import { useAppSelector } from '../../app/hooks';
 import { selectThemeMode } from '../../app/Theme/themeSlice';
 import { selectAuth } from '../../app/Auth/authSlice';
-import { Loading } from '../../components/Loading/Loading';
+import { selectPostById } from '../../app/Posts/postsSlice';
 
 export interface IPostDetailsProps {
   postId: number;
@@ -21,16 +19,13 @@ export const PostDetails: React.FC = () => {
   const mode = useAppSelector(selectThemeMode);
   const user = useAppSelector(selectAuth);
   const { id: postId } = useParams();
+
   const navigate = useNavigate();
   if (!user.isAuthenticated) {
     navigate('/login');
   }
 
-  const { data: post, isLoading } = useFetch<IPost>(
-    'https://jsonplaceholder.typicode.com/posts/' + postId
-  );
-
-  if (isLoading) return <Loading />;
+  const post = useAppSelector((state) => selectPostById(state, postId as string));
 
   return (
     <div className={`post-details-container ${mode}`}>
@@ -41,7 +36,7 @@ export const PostDetails: React.FC = () => {
         <p>{post?.body}</p>
       </div>
       <br />
-      <Comments postId={Number(postId)} />
+      <Comments postId={postId as string} />
     </div>
   );
 };

@@ -12,8 +12,10 @@ interface AuthInitialState {
 }
 
 const initialState: AuthInitialState = {
-  isAuthenticated: false,
-  login: null,
+  isAuthenticated: sessionStorage.getItem('isAuthenticated') === 'true',
+  login: sessionStorage.getItem('login')
+    ? JSON.parse(sessionStorage.getItem('login') as string)
+    : null,
 };
 
 export const authSlice = createSlice({
@@ -21,10 +23,14 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     login(state, action: PayloadAction<ILogin>) {
+      sessionStorage.setItem('isAuthenticated', 'true');
+      sessionStorage.setItem('login', JSON.stringify(action.payload));
       state.isAuthenticated = true;
       state.login = action.payload;
     },
     logout(state) {
+      sessionStorage.removeItem('isAuthenticated');
+      sessionStorage.removeItem('login');
       state.isAuthenticated = false;
       state.login = null;
     },

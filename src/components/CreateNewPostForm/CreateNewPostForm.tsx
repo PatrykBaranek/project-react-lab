@@ -5,34 +5,36 @@ import { createPortal } from 'react-dom';
 import './CreateNewPostForm.css';
 import { IPost } from '../../types/types';
 import { FormEvent, useRef } from 'react';
+import { useAppDispatch } from '../../app/hooks';
+import { addNewPost } from '../../app/Posts/postsSlice';
 
 export interface ICreateNewPostFormProps {
   isOpen: boolean;
   handleCloseForm: () => void;
-  handleAddNewPost: (newPost: IPost) => void;
 }
 
 export const CreateNewPostForm: React.FC<ICreateNewPostFormProps> = ({
   isOpen,
   handleCloseForm,
-  handleAddNewPost,
 }) => {
+  const dispatch = useAppDispatch();
   const titleRef = useRef<HTMLInputElement>(null);
   const bodyRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     const newPost: IPost = {
-      id: 0,
+      id: '0',
       title: titleRef.current?.value as string,
       body: bodyRef.current?.value as string,
       userId: 11,
     };
-    handleAddNewPost(newPost);
+    dispatch(addNewPost(newPost));
     handleCloseForm();
   };
 
   if (!isOpen) return null;
+
   return createPortal(
     <div className="create-new-post-container">
       <form className="create-new-post-form" onSubmit={handleSubmit}>

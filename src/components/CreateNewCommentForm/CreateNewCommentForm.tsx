@@ -8,7 +8,7 @@ import React from 'react';
 import { IComment } from '../../types/types';
 
 export interface ICreateNewCommentFormProps {
-  postId: number;
+  postId: string;
   open: boolean;
   handleOnClose: () => void;
   handleAddNewComment: (newComment: IComment) => void;

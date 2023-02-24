@@ -14,7 +14,7 @@ import { Loading } from '../../components/Loading/Loading';
 import { CreateNewCommentForm } from '../../components/CreateNewCommentForm/CreateNewCommentForm';
 
 export interface ICommentsProps {
-  postId: number;
+  postId: string;
 }
 
 export const Comments: React.FC<ICommentsProps> = ({ postId }: ICommentsProps) => {
