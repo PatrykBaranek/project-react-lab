@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComments, faXmark } from '@fortawesome/free-solid-svg-icons';
 
@@ -8,9 +8,9 @@ import { useFetch } from '../../Hooks/useFetch';
 
 import './Comments.css';
 import { CreateNewCommentForm } from '../../Common/components/CreateNewCommentForm/CreateNewCommentForm';
-import { AuthContext } from '../../context/Account/AccountContext';
 import { useAppSelector } from '../../app/hooks';
 import { selectThemeMode } from '../../app/Theme/themeSlice';
+import { selectAuth } from '../../app/Auth/authSlice';
 
 export interface ICommentsProps {
   postId: number;
@@ -18,7 +18,7 @@ export interface ICommentsProps {
 
 export const Comments: React.FC<ICommentsProps> = ({ postId }: ICommentsProps) => {
   const mode = useAppSelector(selectThemeMode);
-  const { state: user } = useContext(AuthContext);
+  const user = useAppSelector(selectAuth);
   const [openCreateNewCommentForm, setOpenCreateNewCommentForm] = useState(false);
   const [comments, setComments] = useState<IComment[]>([]);
   const { data: commentsFetch, isLoading } = useFetch<IComment[]>(
@@ -45,7 +45,7 @@ export const Comments: React.FC<ICommentsProps> = ({ postId }: ICommentsProps) =
   return (
     <>
       {isLoading && <Loading />}
-      <div className={'comments-container ' + mode}>
+      <div className={`comments-container ${mode}`}>
         <div className="comments-count">
           <b>{comments?.length} </b>
           <FontAwesomeIcon icon={faComments} />

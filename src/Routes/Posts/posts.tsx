@@ -1,13 +1,13 @@
-import { FC, useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Loading } from '../../Common/components/Loading/Loading';
 import { IPost, IUser } from '../../Common/types';
 import { useFetch } from '../../Hooks/useFetch';
 import './Posts.css';
-import { AuthContext } from '../../context/Account/AccountContext';
 import { CreateNewPostForm } from '../../Common/components/CreateNewPostForm/CreateNewPostForm';
 import { useAppSelector } from '../../app/hooks';
 import { selectThemeMode } from '../../app/Theme/themeSlice';
+import { selectAuth } from '../../app/Auth/authSlice';
 
 export interface IUsernames {
   userId: number;
@@ -15,8 +15,8 @@ export interface IUsernames {
   postId: number;
 }
 
-export const Posts: FC = () => {
-  const { state: user } = useContext(AuthContext);
+export const Posts: React.FC = () => {
+  const user = useAppSelector(selectAuth);
   const mode = useAppSelector(selectThemeMode);
   const {
     data: postsFetch,

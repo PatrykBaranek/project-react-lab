@@ -1,21 +1,22 @@
-import React, { FC, useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { useFetch } from '../../Hooks/useFetch';
 import { IAlbum, IPhoto } from '../../Common/types';
 
 import { Loading } from '../../Common/components/Loading/Loading';
-import { AuthContext } from '../../context/Account/AccountContext';
 import { Photos } from '../../Common/components/PhotoComponent/Photos';
 import { Albums, ISearchAlbumParams } from '../../Common/components/AlbumsComponent/Albums';
 import { ErrorPage } from '../ErrorPage/ErrorPage';
 
 import './AlbumPhotos.css';
+import { useAppSelector } from '../../app/hooks';
+import { selectAuth } from '../../app/Auth/authSlice';
 
 export type SearchType = 'albumId' | 'photoId';
 
-export const AlbumPhotos: FC = () => {
-  const { state: user } = useContext(AuthContext);
+export const AlbumPhotos: React.FC = () => {
+  const user = useAppSelector(selectAuth);
 
   const navigate = useNavigate();
   if (!user.isAuthenticated) {

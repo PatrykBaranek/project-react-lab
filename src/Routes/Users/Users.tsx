@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { IUser } from '../../Common/types';
 import { useFetch } from '../../Hooks/useFetch';
 
@@ -7,12 +7,13 @@ import { faPhone, faMailBulk, faBuilding } from '@fortawesome/free-solid-svg-ico
 import { Loading } from '../../Common/components/Loading/Loading';
 
 import './Users.css';
-import { AuthContext } from '../../context/Account/AccountContext';
 import { useNavigate } from 'react-router-dom';
 import { ErrorPage } from '../ErrorPage/ErrorPage';
+import { useAppSelector } from '../../app/hooks';
+import { selectAuth } from '../../app/Auth/authSlice';
 
 export const Users: FC = () => {
-  const { state: user } = useContext(AuthContext);
+  const user = useAppSelector(selectAuth);
   const navigate = useNavigate();
 
   const { data, isLoading, error } = useFetch<IUser[]>(

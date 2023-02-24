@@ -1,10 +1,8 @@
-import { FC, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faImage, faUsers, faTableList } from '@fortawesome/free-solid-svg-icons';
 
 import { ChangeModeThemeBtn } from '../../Common/components/ButtonComponents/ChangeModeThemeBtn/ChangeModeThemeBtn';
-import { AuthContext } from '../../context/Account/AccountContext';
 
 import { AccountBtn } from '../../Common/components/ButtonComponents/AccountBtn/AccountBtn';
 import { SignOutBtn } from '../../Common/components/ButtonComponents/SignOutBtn/SignOutBtn';
@@ -13,11 +11,12 @@ import { LoginBtn } from '../../Common/components/ButtonComponents/LoginBtn/Logi
 import './Nav.css';
 import { useAppSelector } from '../../app/hooks';
 import { selectThemeMode } from '../../app/Theme/themeSlice';
+import { selectAuth } from '../../app/Auth/authSlice';
 
-export const Nav: FC = () => {
+export const Nav: React.FC = () => {
   const mode = useAppSelector(selectThemeMode);
 
-  const { state: user } = useContext(AuthContext);
+  const user = useAppSelector(selectAuth);
 
   let activeClassname = 'activeLink';
 
