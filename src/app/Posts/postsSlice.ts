@@ -1,11 +1,11 @@
 import { PayloadAction, createAsyncThunk, createSlice, nanoid } from '@reduxjs/toolkit';
-import { IPost } from '../../types/types';
+import { StatusType, IPost } from '../../types/types';
 import axios from 'axios';
 import { RootState } from '../store';
 
 interface PostsInitialState {
   posts: IPost[];
-  status: 'idle' | 'pending' | 'succeeded' | 'failed';
+  status: StatusType;
   error: string;
 }
 
@@ -36,8 +36,8 @@ export const postsSlice = createSlice({
       })
       .addCase(fetchPosts.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.posts.push(...action.payload);
-        state.posts.map((post) => (post.id = nanoid()));
+        state.posts.;
+        state.posts.map((post) => String(post.id));
       })
       .addCase(fetchPosts.rejected, (state, action) => {
         state.status = 'failed';

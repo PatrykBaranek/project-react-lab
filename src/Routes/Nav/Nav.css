@@ -1,44 +1,45 @@
 .navigation {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 5vh;
-	background-color: #ddd;
-	padding: 4em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5vh;
+  background-color: #ddd;
+  padding: 4em;
 }
 
 .navigation a {
-	display: inline-block;
-	margin-left: 5px;
-	padding: 1.2rem;
-	font-size: 2.5rem;
-	text-decoration: none;
-	color: #111;
-	transition: 0.3s;
+  display: inline-block;
+  margin-left: 5px;
+  padding: 1.2rem;
+  font-size: 2.5rem;
+  text-decoration: none;
+  color: #111;
+  transition: 0.3s;
 }
 
 .navigation.light a:hover {
-	background-color: var(--light-mode-background-color-hover);
+  background-color: var(--light-mode-background-color-hover);
 }
 
 .navigation .activeLink {
-	border-bottom: 2px solid #111;
+  border-bottom: 2px solid #111;
 }
 
 /* dark mode */
 
 .navigation.dark {
-	background-color: #222;
+  /* background-color: #222; */
+  background: linear-gradient(112.1deg, rgb(32, 38, 57) 11.4%, rgb(63, 76, 119) 70.2%);
 }
 
 .navigation.dark a {
-	color: #ddd;
+  color: #ddd;
 }
 
 .navigation.dark a:hover {
-	background-color: var(--dark-mode-background-color-hover);
+  background-color: var(--dark-mode-background-color-hover);
 }
 
 .navigation.dark .activeLink {
-	border-color: #ddd;
+  border-color: #ddd;
 }

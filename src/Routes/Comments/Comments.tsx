@@ -3,15 +3,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComments, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 import { IComment } from '../../types/types';
-import { useFetch } from '../../Hooks/useFetch';
 
 import './Comments.css';
 
-import { useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { selectThemeMode } from '../../app/Theme/themeSlice';
 import { selectAuth } from '../../app/Auth/authSlice';
-import { Loading } from '../../components/Loading/Loading';
 import { CreateNewCommentForm } from '../../components/CreateNewCommentForm/CreateNewCommentForm';
+import {
+  fetchCommentsForPostId,
+  selectComments,
+  selectCommentsError,
+  selectCommentsStatus,
+} from '../../app/Comments/commentsSlice';
 
 export interface ICommentsProps {
   postId: string;
@@ -20,32 +24,25 @@ export interface ICommentsProps {
 export const Comments: React.FC<ICommentsProps> = ({ postId }: ICommentsProps) => {
   const mode = useAppSelector(selectThemeMode);
   const user = useAppSelector(selectAuth);
-  const [openCreateNewCommentForm, setOpenCreateNewCommentForm] = useState(false);
-  const [comments, setComments] = useState<IComment[]>([]);
-  const { data: commentsFetch, isLoading } = useFetch<IComment[]>(
-    `https://jsonplaceholder.typicode.com/posts/${postId}/comments`
-  );
 
-  useEffect(() => {
-    commentsFetch && setComments(commentsFetch);
-  }, [commentsFetch]);
+  const comments = useAppSelector(selectComments);
+  const commentsStatus = useAppSelector(selectCommentsStatus);
+  const commentsError = useAppSelector(selectCommentsError);
+
+  const dispatch = useAppDispatch();
+
+  const [openCreateNewCommentForm, setOpenCreateNewCommentForm] = useState(false);
 
   const handleCloseForm = () => {
     setOpenCreateNewCommentForm(false);
   };
 
-  const handleAddComment = (newComment: IComment) => {
-    newComment.id = comments[comments.length - 1].id + 1;
-    setComments([...comments, newComment]);
-  };
-
-  const handleDelete = (commentId: number) => {
-    setComments(comments.filter((comment) => comment.id !== commentId));
-  };
+  useEffect(() => {
+    dispatch(fetchCommentsForPostId(postId));
+  }, []);
 
   return (
     <>
-      {isLoading && <Loading />}
       <div className={`comments-container ${mode}`}>
         <div className="comments-count">
           <b>{comments?.length} </b>
@@ -55,8 +52,6 @@ export const Comments: React.FC<ICommentsProps> = ({ postId }: ICommentsProps) =
           postId={postId}
           open={openCreateNewCommentForm}
           handleOnClose={handleCloseForm}
-          handleAddNewComment={handleAddComment}
-          username={user.login?.username}
         />
         {!openCreateNewCommentForm && (
           <button className="create-comment-btn" onClick={() => setOpenCreateNewCommentForm(true)}>

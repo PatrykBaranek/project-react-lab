@@ -1,13 +1,11 @@
-import { FC } from 'react';
-
 export interface IErrorPageProps {
-	errorMessage?: string;
+  errorMessage?: string;
 }
 
-export const ErrorPage: FC<IErrorPageProps> = ({ errorMessage }) => {
-	return (
-		<div className="error-container">
-			<p className="error-message">{errorMessage}</p>
-		</div>
-	);
+export const ErrorPage: React.FC<IErrorPageProps> = ({ errorMessage }) => {
+  return (
+    <div className="error-container">
+      <p className="error-message">{errorMessage}</p>
+    </div>
+  );
 };

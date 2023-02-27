@@ -5,50 +5,22 @@ import { createPortal } from 'react-dom';
 
 import './CreateNewCommentForm.css';
 import React from 'react';
-import { IComment } from '../../types/types';
 
 export interface ICreateNewCommentFormProps {
   postId: string;
   open: boolean;
   handleOnClose: () => void;
-  handleAddNewComment: (newComment: IComment) => void;
-  username: string | undefined;
 }
 
 export const CreateNewCommentForm: React.FC<ICreateNewCommentFormProps> = ({
   postId,
   open,
   handleOnClose,
-  handleAddNewComment,
-  username,
 }) => {
   const titleRef = useRef<HTMLInputElement>(null);
   const bodyRef = useRef<HTMLInputElement>(null);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    await fetch('https://jsonplaceholder.typicode.com/comments', {
-      method: 'POST',
-      body: JSON.stringify({
-        postId: postId,
-        email: username,
-        title: titleRef.current?.value,
-        body: bodyRef.current?.value,
-      }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        const newComment: IComment = {
-          ...data,
-        };
-
-        handleAddNewComment(newComment);
-      })
-      .catch((err) => console.error(err));
-
+  const handleSubmit = async () => {
     handleOnClose();
   };
 

@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { IUser } from '../../types/types';
+import { StatusType, IUser } from '../../types/types';
 import axios from 'axios';
 import { RootState } from '../store';
 
 interface UsersInitialState {
   users: IUser[];
-  status: 'idle' | 'pending' | 'succeeded' | 'failed';
+  status: StatusType;
   error: string;
 }
 

@@ -1,3 +1,5 @@
+export type StatusType = 'idle' | 'pending' | 'succeeded' | 'failed';
+
 export interface IPost {
   id: string;
   title: string;
