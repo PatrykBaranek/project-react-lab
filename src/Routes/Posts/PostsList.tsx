@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { IPost } from '../../types/types';
+import { useGetAllUsersQuery } from '../../app/api/jsonPlaceholderApi';
 
 interface PostListProps {
   posts: IPost[];
@@ -7,6 +8,8 @@ interface PostListProps {
 
 export const PostsList: React.FC<PostListProps> = ({ posts }) => {
   const navigate = useNavigate();
+
+  const { data: users } = useGetAllUsersQuery('');
 
   const handleClick = (postId: string) => {
     navigate(`${postId}`);
@@ -32,8 +35,7 @@ export const PostsList: React.FC<PostListProps> = ({ posts }) => {
             </p>
           </div>
           <div className="post-createdBy">
-            // TODO: Add Created By User
-            {/* <p>{usernames?.find((username) => username.userId === post.userId)?.username}</p> */}
+            <p>{users?.find((username) => username.id === post.userId)?.name}</p>
           </div>
         </div>
       ))}

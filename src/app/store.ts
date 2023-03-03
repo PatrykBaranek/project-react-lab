@@ -1,18 +1,16 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import themeReducer from './Theme/themeSlice';
 import authReducer from './Auth/authSlice';
-import postsReducer from './Posts/postsSlice';
-import usersReducer from './Users/usersSlice';
-import commentsReducer from './Comments/commentsSlice';
+import { jsonPlaceholderApi } from './api/jsonPlaceholderApi';
 
 export const store = configureStore({
   reducer: {
+    [jsonPlaceholderApi.reducerPath]: jsonPlaceholderApi.reducer,
     theme: themeReducer,
     auth: authReducer,
-    posts: postsReducer,
-    users: usersReducer,
-    comments: commentsReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(jsonPlaceholderApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

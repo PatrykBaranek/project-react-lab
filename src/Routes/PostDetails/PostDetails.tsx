@@ -5,7 +5,8 @@ import './PostDetails.css';
 
 import { useAppSelector } from '../../app/hooks';
 import { selectThemeMode } from '../../app/Theme/themeSlice';
-import { selectPostById } from '../../app/Posts/postsSlice';
+import { useGetPostByIdQuery } from '../../app/api/jsonPlaceholderApi';
+import { Loading } from '../../components/Loading/Loading';
 
 export interface IPostDetailsProps {
   postId: number;
@@ -18,7 +19,11 @@ export const PostDetails: React.FC = () => {
   const mode = useAppSelector(selectThemeMode);
   const { id: postId } = useParams();
 
-  const post = useAppSelector((state) => selectPostById(state, postId as string));
+  const { data: post, isLoading } = useGetPostByIdQuery(Number(postId));
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div className={`post-details-container ${mode}`}>
@@ -29,7 +34,7 @@ export const PostDetails: React.FC = () => {
         <p>{post?.body}</p>
       </div>
       <br />
-      <Comments postId={postId as string} />
+      <Comments postId={Number(postId)} />
     </div>
   );
 };

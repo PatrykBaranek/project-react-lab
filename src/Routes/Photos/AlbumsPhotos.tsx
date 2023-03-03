@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 import { useFetch } from '../../Hooks/useFetch';
 import { IAlbum, IPhoto } from '../../types/types';
@@ -7,13 +7,17 @@ import { IAlbum, IPhoto } from '../../types/types';
 import { ErrorPage } from '../ErrorPage/ErrorPage';
 
 import './AlbumPhotos.css';
-import { useAppSelector } from '../../app/hooks';
-import { selectAuth } from '../../app/Auth/authSlice';
 import { Loading } from '../../components/Loading/Loading';
 import { Photos } from '../../components/PhotoComponent/Photos';
 import { Albums, ISearchAlbumParams } from '../../components/AlbumsComponent/Albums';
 
 export type SearchType = 'albumId' | 'photoId';
+
+// const getEnpointForSearch = (selectedOption: SearchType) => {
+//   if (selectedOption === 'albumId') {
+//     return;
+//   }
+// };
 
 export const AlbumPhotos: React.FC = () => {
   const [url, setUrl] = useState<string>('https://jsonplaceholder.typicode.com/photos/');

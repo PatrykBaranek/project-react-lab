@@ -5,8 +5,6 @@ import { createPortal } from 'react-dom';
 import './CreateNewPostForm.css';
 import { IPost } from '../../types/types';
 import { FormEvent, useRef } from 'react';
-import { useAppDispatch } from '../../app/hooks';
-import { addNewPost } from '../../app/Posts/postsSlice';
 
 export interface ICreateNewPostFormProps {
   isOpen: boolean;
@@ -17,7 +15,6 @@ export const CreateNewPostForm: React.FC<ICreateNewPostFormProps> = ({
   isOpen,
   handleCloseForm,
 }) => {
-  const dispatch = useAppDispatch();
   const titleRef = useRef<HTMLInputElement>(null);
   const bodyRef = useRef<HTMLInputElement>(null);
 
@@ -29,7 +26,7 @@ export const CreateNewPostForm: React.FC<ICreateNewPostFormProps> = ({
       body: bodyRef.current?.value as string,
       userId: 11,
     };
-    dispatch(addNewPost(newPost));
+
     handleCloseForm();
   };
 

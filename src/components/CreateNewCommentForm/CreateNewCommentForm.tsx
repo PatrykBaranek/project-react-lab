@@ -5,9 +5,10 @@ import { createPortal } from 'react-dom';
 
 import './CreateNewCommentForm.css';
 import React from 'react';
+import { useAddNewCommentToPostMutation } from '../../app/api/jsonPlaceholderApi';
 
 export interface ICreateNewCommentFormProps {
-  postId: string;
+  postId: number;
   open: boolean;
   handleOnClose: () => void;
 }
@@ -20,7 +21,14 @@ export const CreateNewCommentForm: React.FC<ICreateNewCommentFormProps> = ({
   const titleRef = useRef<HTMLInputElement>(null);
   const bodyRef = useRef<HTMLInputElement>(null);
 
+  const [addNewComment] = useAddNewCommentToPostMutation();
+
   const handleSubmit = async () => {
+    addNewComment({
+      postId: postId,
+      userId: 1,
+      body: { title: titleRef.current?.value, body: bodyRef.current?.value },
+    });
     handleOnClose();
   };
 
